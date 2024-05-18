@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F034AEB42BF9653400BF5C49 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F034AEB32BF9653400BF5C49 /* README.md */; };
 		F0FF28FC2BF9343100C868E0 /* mobile_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FF28FB2BF9343100C868E0 /* mobile_appApp.swift */; };
 		F0FF28FE2BF9343100C868E0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FF28FD2BF9343100C868E0 /* ContentView.swift */; };
 		F0FF29002BF9343300C868E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0FF28FF2BF9343300C868E0 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F034AEB32BF9653400BF5C49 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F0FF28F82BF9343100C868E0 /* mobile-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mobile-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0FF28FB2BF9343100C868E0 /* mobile_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mobile_appApp.swift; sourceTree = "<group>"; };
 		F0FF28FD2BF9343100C868E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +34,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F034AEB02BF964D500BF5C49 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F0FF28FD2BF9343100C868E0 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F034AEB12BF964DE00BF5C49 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F034AEB22BF964E500BF5C49 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F034AEB52BF9654700BF5C49 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				F0FF28FB2BF9343100C868E0 /* mobile_appApp.swift */,
+				F0FF28FF2BF9343300C868E0 /* Assets.xcassets */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		F0FF28EF2BF9343100C868E0 = {
 			isa = PBXGroup;
 			children = (
@@ -51,9 +84,11 @@
 		F0FF28FA2BF9343100C868E0 /* mobile-app */ = {
 			isa = PBXGroup;
 			children = (
-				F0FF28FB2BF9343100C868E0 /* mobile_appApp.swift */,
-				F0FF28FD2BF9343100C868E0 /* ContentView.swift */,
-				F0FF28FF2BF9343300C868E0 /* Assets.xcassets */,
+				F034AEB32BF9653400BF5C49 /* README.md */,
+				F034AEB52BF9654700BF5C49 /* Other */,
+				F034AEB22BF964E500BF5C49 /* Models */,
+				F034AEB12BF964DE00BF5C49 /* ViewModels */,
+				F034AEB02BF964D500BF5C49 /* Views */,
 				F0FF29012BF9343300C868E0 /* Preview Content */,
 			);
 			path = "mobile-app";
@@ -125,6 +160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F034AEB42BF9653400BF5C49 /* README.md in Resources */,
 				F0FF29032BF9343300C868E0 /* Preview Assets.xcassets in Resources */,
 				F0FF29002BF9343300C868E0 /* Assets.xcassets in Resources */,
 			);
