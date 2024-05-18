@@ -40,6 +40,22 @@ def get_all_images(username):
         except Exception as e:
             print(f"Error generating URL for {key}: {e}")
             continue
-
     # Return the URLs in a JSON response
     return jsonify({"images": image_urls})
+
+def get_object(username, objectname):
+    key = username + '/models/' + objectname
+
+    try:
+        url = s3_client.generate_presigned_url(
+            'get_object',
+            Params={'Bucket': BUCKET_NAME, 'Key': key},
+            ExpiresIn=3600 
+        )
+
+    except Exception as e:
+        print(f"Error generating URL for {key}: {e}")
+
+    return jsonify(url)
+
+    
