@@ -1,0 +1,72 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  opacity: 0.2;
+}
+
+/* ------------ Landing Section ------------ */
+
+.landing {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.left-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-right: auto;
+}
+
+.button-cont {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.title {
+  font-size: 3rem;
+  background: linear-gradient(to right, white, rgb(158, 158, 158));
+  -webkit-background-clip: text;
+  color: transparent;
+  margin: 10px 0;
+  font-weight: bold;
+  text-align: left;
+  letter-spacing: 0.08em;
+  margin-right: 10rem;
+  margin-bottom: 0;
+}
+
+.summary {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.phoneImg {
+  width: 22rem;
+  display: block; /* Ensures the img tag is treated as a block element */
+  margin: auto; /* Centers the image horizontally */
+  filter: drop-shadow(0 0 10px rgba(144, 144, 144, 0.99));
+}
+
+/* ----------- Chess Test ----------- */
+
