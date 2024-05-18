@@ -1,0 +1,25 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.dashboard {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.left-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-right: auto;
+}
+
+.button-cont {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+} 
