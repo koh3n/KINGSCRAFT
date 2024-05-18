@@ -45,7 +45,7 @@ def get_image():
 
     print("Uploading raw image to bucket")
     # temp = filename.split('.') # breaks image.png to ['image', 'png']
-    bucket_key = user_name+'/'+ 'image-raw' + '/' + filename # image.png -> username/image-raw/image.png
+    bucket_key = user_name+'/'+ 'raw-image' + '/' + filename # image.png -> bucket-name/username/image-raw/image.png
     try:
         bucket.upload_file(Key=bucket_key, Filename=path)
         print("Upload success")
@@ -55,17 +55,33 @@ def get_image():
     # cleanup
     os.remove(path)
 
+    return 'Image uploaded!', 200
+
 
 def preprocess():
     if 'user-name' not in request.form:
         return 'user-name requred in data', 400
     user_name = request.form['user-name']
-    if 'project-name' not in request.form:
-        return 'project-name required in data', 400
-    key = user_name + "/" + key
+    if 'file-name' not in request.form:
+        return 'file-name required in data', 400
+    file_name = request.form['file-name']
+
+
+    key = user_name + "/raw-image/" + file_name  
+    download_path = os.path.join(local_storage_path,file_name)
+    s3_client.download_file(bucket_name, key, download_path)
+
     gradio_client = Client("SIGMitch/InstantMesh")
-    s3_client.download_file(bucket_name, )
-    src = gradio_client.predict(input_image=file(...), do_remove_background=True, api_name="/preprocess")
+    src = gradio_client.predict(input_image=file(download_path), do_remove_background=True, api_name="/preprocess")
+    
+    os.remove(download_path)
+    shutil.move(src, download_path)
+
+    bucket_key = user_name + "/processed-image/" + file_name
+    bucket.upload_file(Key=bucket_key, Filename=download_path)
+    os.remove(download_path)
+
+    return 'Image processed!', 200
 
 
 
