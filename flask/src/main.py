@@ -1,6 +1,6 @@
 from flask import Blueprint, Flask, request, jsonify
-from src.util.api_util import *
-from src.util.s3_util import *
+from util.api_util import *
+from util.s3_util import *
 
 
 app = Flask(__name__)
@@ -28,8 +28,6 @@ def image_route():
     username = data['username']
 
     return get_all_images(username), 200
-
-
 
 
 if __name__ == '__main__':
