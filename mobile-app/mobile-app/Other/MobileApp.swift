@@ -4,14 +4,17 @@
 //
 //  Created by Jayden Piao on 2024-05-18.
 //
-
+import FirebaseCore
 import SwiftUI
 
 @main
-struct mobile_appApp: App {
+struct MobileApp: App {
+    init() {
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LandingPageView()
         }
     }
 }
