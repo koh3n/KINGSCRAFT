@@ -1,0 +1,103 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+
+# Swift/SwiftUI
+build/
+*.xcworkspace
+*.xcuserdata
+*.xccheckout
+*.xcodeproj
+*.xcscmblueprint
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM
+*.swiftpm
+.swift-version
+.swiftlint.yml
+Package.resolved
+
+# macOS
+*.DS_Store
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+*.xcscheme
+*.xcuserstate
+
+# Swift Package Manager
+.build/
+Packages/
+.swiftpm/
+
+# Carthage
+Carthage/Build/
+Carthage/Checkouts/
+
+# CocoaPods
+Pods/
+Podfile.lock
+*.xcworkspace
+
+# Flask
+__pycache__/
+instance/
+*.pyc
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+*.db
+
+# Flask specific
+instance/
+*.sqlite3
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Virtual Environment
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Static Files
+static/
+media/
+
+# React
+node_modules/
+npm-debug.log
+yarn-error.log
+.yarn/
+.pnp.*
+.cache/
+
+# Local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env
+
+# Misc
+coverage/
+.vscode/
+.idea/
+*.code-workspace
