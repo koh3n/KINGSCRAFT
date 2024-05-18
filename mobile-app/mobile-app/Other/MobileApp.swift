@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct MobileApp: App {
+    init() {
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LandingPageView()
         }
     }
 }
