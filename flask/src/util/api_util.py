@@ -69,17 +69,68 @@ def preprocess():
 
     key = user_name + "/raw-image/" + file_name  
     download_path = os.path.join(local_storage_path,file_name)
-    s3_client.download_file(bucket_name, key, download_path)
+    # s3_client.download_file(bucket_name, key, download_path)
 
     gradio_client = Client("SIGMitch/InstantMesh")
-    src = gradio_client.predict(input_image=file(download_path), do_remove_background=True, api_name="/preprocess")
+    url = s3_client.generate_presigned_url(
+                'get_object',
+                Params={'Bucket': bucket_name, 'Key': key},
+                ExpiresIn=3600  # URL expiration time in seconds
+            )
+    src = gradio_client.predict(input_image=url, do_remove_background=True, api_name="/preprocess")
     
-    os.remove(download_path)
+    # os.remove(download_path)
     shutil.move(src, download_path)
 
     bucket_key = user_name + "/processed-image/" + file_name
-    bucket.upload_file(Key=bucket_key, Filename=download_path)
-    os.remove(download_path)
+
+    try:
+        bucket.upload_file(Key=bucket_key, Filename=download_path)
+        print("Processed image uploaded successfully")
+        os.remove(download_path)
+    except Exception as e:
+        print(e)
 
     return 'Image processed!', 200
+
+def generate_multiview():
+    if 'user-name' not in request.form:
+        return 'user-name requred in data', 400
+    user_name = request.form['user-name']
+    if 'file-name' not in request.form:
+        return 'file-name required in data', 400
+    file_name = request.form['file-name']
+
+    gradio_client = Client("SIGMitch/InstantMesh")
+    src=''
+
+    try: 
+        src = gradio_client.predict(input_image=file(path),
+                              sample_steps=75,
+                              sample_seed=42,
+                              api_name="/generate_mvs")
+    except:
+        gradio_client = Client("TecentARC/InstantMesh")
+        src = gradio_client.predict(input_image=file(path),
+                                sample_steps=75,
+                                sample_seed=42,
+                                api_name="/generate_mvs")
+    
+    
+    bucket_key = user_name + "/multiview-image/" + file_name
+    try:
+        bucket.upload_file(Key=bucket_key, Filename=src)
+        print("Multiview image uploaded successfully")
+    except Exception as e:
+        print(e)
+
+    os.remove(src)
+
+    return 'Multiview Image generated successfully', 200
+
+
+
+
+
+
 

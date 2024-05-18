@@ -15,6 +15,10 @@ def get_image_route():
 def process_image():
     return preprocess()
 
+@app.route("/multiview", methods = ['POST'])
+def multiview():
+    return generate_multiview()
+
 @app.route("/images", methods = ['POST'])
 def image_route():
     data = request.get_json()
