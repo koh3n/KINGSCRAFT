@@ -83,16 +83,3 @@ def preprocess():
 
     return 'Image processed!', 200
 
-
-
-
-
-
-
-
-    
-    
-
-
-
-    return
