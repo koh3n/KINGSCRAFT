@@ -1,24 +1,24 @@
 import React from "react";
 import GoogleLogin from '../components/GoogleLogin';
 import UserAccount from '../components/UserAccount';
-import '../styles/Dashboard.css'
+
+
+
+import { Carousel } from "./components/carousel-5/Carousel";
+
 
 const Dashboard = () => {
-    return (
-        <>
-            <div className="dashboard">
-                <div className='left-div'>
-                <div className='button-cont'>
-                    <UserAccount />
-                    <GoogleLogin />
-                    <button>`</button>
-                </div>
-                </div>
-            </div>
-        </>
-    )
-
-    // 
+  return (
+    <div className="dashboard">
+        <Carousel/>
+        <div className='left-div'>
+        <div className='button-cont'>
+          <UserAccount />
+          <GoogleLogin />
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Dashboard
+export default Dashboard;
