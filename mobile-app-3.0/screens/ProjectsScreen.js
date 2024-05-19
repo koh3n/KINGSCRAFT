@@ -1,14 +1,58 @@
-import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, FlatList, ActivityIndicator } from "react-native";
 import Navbar from "../components/Navbar";
 import BottomBar from "../components/BottomBar";
+import ProjectItem from "../components/ProjectItem";
+import { getImages, parse_url } from "../utils/utils";
 
 export default function ProjectsScreen({ navigation }) {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const username = "test-user"; // Replace with actual username
+
+  const fetchProjects = async () => {
+    try {
+      const images = await getImages(username);
+      console.log("Images:", images);
+
+      const projectDetails = images.map((imageUrl) => ({
+        imageUrl,
+        name: parse_url(imageUrl),
+      }));
+
+      setProjects(projectDetails);
+    } catch (error) {
+      console.error("Error fetching images: ", error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <Navbar navigation={navigation} />
       <View style={styles.content}>
-        <Text style={styles.text}>Projects Page</Text>
+        <FlatList
+          data={projects}
+          renderItem={({ item }) => (
+            <ProjectItem imageUrl={item.imageUrl} name={item.name} />
+          )}
+          keyExtractor={(item, index) => index.toString()}
+          numColumns={3}
+          contentContainerStyle={styles.grid}
+        />
       </View>
       <BottomBar navigation={navigation} />
     </View>
@@ -24,7 +68,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  text: {
-    fontSize: 24,
+  grid: {
+    justifyContent: "center",
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
