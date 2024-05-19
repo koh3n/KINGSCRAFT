@@ -28,15 +28,17 @@ const UserAccount = () => {
 
   return (
     // renders if user is logged in
-    <div className="user-photo-cont">
+    <>
       {user ? (
-        <div>
-          <img src={user.photoURL} alt="Profile" />
-          <p>{user.displayName}</p>
-          <button onClick={handleLogout}>Logout</button>
+        <div className="user-navbar">
+          <div className="user-profile">
+            <img className="profile-picture" src={user.photoURL} alt="Profile" />
+            <p className="user-name">{user.displayName}</p>
+            <button className="logout-button" onClick={handleLogout}>Logout</button>
+          </div>
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 

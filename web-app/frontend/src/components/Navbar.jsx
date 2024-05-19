@@ -11,7 +11,7 @@ const Navbar = () => {
                 <a href="#" className="nav-link">
                     About
                 </a>
-                <div className="logo">
+                <div className="logo center-logo">
                     KINGS CRAFT
                 </div>
                 <a href="#" className="nav-link">

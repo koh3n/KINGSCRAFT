@@ -23,14 +23,10 @@ const Dashboard = (images) => {
   ];
 
   return (
-    <div className="dashboard">
-      <Carousel items={items} />
-
-      <div className='left-div'>
-        <div className='button-cont'>
-          <UserAccount />
-          <GoogleLogin />
-        </div>
+    <div className="main">
+      <div className="dashboard">
+        <UserAccount />
+        <Carousel items={items} />
       </div>
     </div>
   );

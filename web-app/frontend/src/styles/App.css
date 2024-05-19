@@ -27,20 +27,22 @@
 .landing {
   display: flex;
   align-items: center;
+  justify-content: space-between; 
   flex-direction: row;
+  padding: 2rem;
 }
 
 .left-div {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  margin-right: auto;
+  align-items: flex-start; 
+  padding-right: 2rem; 
 }
 
 .button-cont {
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: flex-start;
 }
 
 .title {
@@ -52,8 +54,6 @@
   font-weight: bold;
   text-align: left;
   letter-spacing: 0.08em;
-  margin-right: 10rem;
-  margin-bottom: 0;
 }
 
 .summary {
@@ -63,8 +63,8 @@
 
 .phoneImg {
   width: 22rem;
-  display: block; /* Ensures the img tag is treated as a block element */
-  margin: auto; /* Centers the image horizontally */
+  height: auto;
+  display: block; 
   filter: drop-shadow(0 0 10px rgba(144, 144, 144, 0.99));
 }
 
@@ -79,15 +79,14 @@
   color: white;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin-right: 1rem; 
 }
 
 .login:hover {
   border-color: #646cff;
 }
+
 .login:focus,
 .login:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
-/* ----------- Chess Test ----------- */
-

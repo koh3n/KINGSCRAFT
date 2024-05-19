@@ -1,4 +1,42 @@
-.user-photo-cont img {
-    width: 70px;
-    height: 100%;
+.user-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 4px 24px;
+    background-color: transparent;
+    border-radius: 24px;
+    border-width: 0.8px;
+    border-style: solid;
+}
+  
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+  
+.profile-picture {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+  
+.user-name {
+    font-size: 12.8px;
+    font-weight: bold;
+    margin-right: 8px;
+}
+  
+.logout-button {
+    padding: 6.4px 12.8px;
+    background-color: #CA2B9D;
+    color: #fff;
+    border: none;
+    border-radius: 3.2px;
+    font-size: 11.2px;
+    cursor: pointer;
+}
+  
+.logout-button:hover {
+    background-color: #c468aa;
 }

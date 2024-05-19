@@ -6,6 +6,7 @@ const CarouselContainer = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
+  margin-top: 3rem
 `;
 
 const CarouselInner = styled.div`
