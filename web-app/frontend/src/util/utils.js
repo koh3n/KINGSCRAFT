@@ -63,6 +63,7 @@ export async function getImages(username) {
   }
 }
 
+
 async function get_object(username, objectname) {
   const url = 'http://127.0.0.1:5001/object'; // Replace with your API endpoint
   const data = {
@@ -71,14 +72,21 @@ async function get_object(username, objectname) {
   };
 
   try {
-    const response = await axios.post(url, data, {
+    const response = await fetch(url, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify(data)
     });
 
-    console.log('Success:', response.data);
-    return response.data;
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    console.log('Success:', responseData);
+    return responseData;
   } catch (error) {
     console.error('Error:', error);
   }

@@ -1,9 +1,9 @@
 .main {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60%;
+  width: 70%;
 }
 
 .dashboard {
@@ -29,7 +29,7 @@
 }
 
 img {
-  height: 20vw;
+  height: 25vw;
   width: 20vw;
   object-fit: cover;
 }

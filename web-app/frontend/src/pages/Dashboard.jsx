@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import UserAccount from '../components/UserAccount';
 import Carousel from '../components/Carousel'; 
 import styled from 'styled-components';
-import "../styles/Dashboard.css"
+import "../styles/Dashboard.css";
 
 const CarouselItemContent = styled.div`
   display: flex;
@@ -14,20 +14,24 @@ const CarouselItemContent = styled.div`
   color: white;
 `;
 
-const Dashboard = (images) => {
+const Dashboard = ({ images }) => {
   let items = [];
 
-  console.log('images: ', images)
+  console.log('images: ', images);
   if (!images || images.length === 0) {
-    items = (
-      <div>Download the Mobile App to Start a New Project</div>
-    );
+    items = [
+      {
+        image: <CarouselItemContent>Download the Mobile App to Start a New Project</CarouselItemContent>,
+        title: "",
+        downloadLink: ""
+      }
+    ];
   } else {
-    items = images.map((image, index) => (
-      <CarouselItemContent key={index}>
-        <img src={image} alt={`Slide ${index + 1}`} />
-      </CarouselItemContent>
-    ));
+    items = images.map((image, index) => ({
+      image: <img src={image.url} alt={`Slide ${index + 1}`} />,
+      title: image.title,
+      downloadLink: image.downloadLink
+    }));
   }
 
   return (
