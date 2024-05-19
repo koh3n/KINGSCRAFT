@@ -19,6 +19,11 @@ const HomePage = () => {
         setImages(getImages(user.uid));
         console.log(user.uid);
         console.log(images);
+        console.log([])
+
+        for (let i = 0; i < images.length; i++) {
+          console.log(images[0]);
+        }
       } else {
         setUser(null);
       }
@@ -51,7 +56,8 @@ const HomePage = () => {
           </section>
         </div>
       ) : (
-        <Dashboard />
+        // <Dashboard images={images}/>
+        <Dashboard images={images}/>
       )}
     </>
   );

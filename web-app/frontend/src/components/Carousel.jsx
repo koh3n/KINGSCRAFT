@@ -1,4 +1,3 @@
-// src/Carousel.js
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -6,18 +5,21 @@ const CarouselContainer = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
-  margin-top: 3rem
+  margin-top: 3rem;
 `;
 
 const CarouselInner = styled.div`
   display: flex;
   transition: transform 0.5s ease-in-out;
-  transform: ${({ currentIndex }) => `translateX(-${currentIndex * 100}%)`};
+  transform: ${({ translateValue }) => `translateX(-${translateValue}%)`};
 `;
 
 const CarouselItem = styled.div`
   min-width: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Arrow = styled.div`
@@ -39,7 +41,7 @@ const Arrow = styled.div`
 
 const DotsContainer = styled.div`
   position: absolute;
-  bottom: 10px;
+  bottom: 70px;
   left: 50%;
   display: flex;
   transform: translateX(-50%);
@@ -49,8 +51,24 @@ const Dot = styled.div`
   width: 10px;
   height: 10px;
   margin: 0 5px;
-  background-color: ${({ active }) => (active ? 'black' : 'gray')};
+  background-color: ${({ active }) => (active ? '#5200FF' : '#CA2B9D')};
   border-radius: 50%;
+  cursor: pointer;
+`;
+
+const Title = styled.div`
+  margin-top: 10px;
+  font-size: 18px;
+  color: black;
+`;
+
+const ViewButton = styled.button`
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 `;
 
@@ -73,11 +91,19 @@ const Carousel = ({ items }) => {
     setCurrentIndex(index);
   };
 
+  const translateValue = currentIndex * 100;
+
   return (
     <CarouselContainer>
-      <CarouselInner currentIndex={currentIndex}>
+      <CarouselInner translateValue={translateValue}>
         {items.map((item, index) => (
-          <CarouselItem key={index}>{item}</CarouselItem>
+          <CarouselItem key={index}>
+            {item.image}
+            <Title>{item.title}</Title>
+            <ViewButton onClick={() => window.location.href = item.downloadLink}>
+              360° View
+            </ViewButton>
+          </CarouselItem>
         ))}
       </CarouselInner>
       <Arrow direction="left" onClick={prevSlide}>
