@@ -45,7 +45,7 @@ const HomePage = () => {
           </section>
         </div>
       ) : (
-        <Dashboard/>
+        <Dashboard images={['./grid.png', './chess4.png']} />
       )}
     </>
   );
