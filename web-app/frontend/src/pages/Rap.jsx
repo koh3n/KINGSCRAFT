@@ -2,7 +2,7 @@ import React from 'react';
 import ModelViewer from './ModelViewer';
 import './Rap.css';
 
-function Rap() {
+const Rap = () => {
   return (
     <div className="Rap">
       <header className="Rap-header">

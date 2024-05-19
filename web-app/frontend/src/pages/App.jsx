@@ -6,6 +6,7 @@ import firebase from "../firebase/firebase";
 import '../styles/App.css';
 import Dashboard from './Dashboard';
 
+import { Link } from 'react-router-dom';
 import Rap from './Rap.jsx';
 
 import { getImages } from '../util/utils.js'
@@ -36,7 +37,6 @@ const HomePage = () => {
 
   return (
     <>
-      <Rap/>
       <img className='grid' src="./grid.png" alt="Grid"/>
       {!user ? (
         <div>
@@ -52,7 +52,7 @@ const HomePage = () => {
                 <UserAccount />
                 <GoogleLogin />
               </div>
-            </div>
+``            </div>
             <div>
               <img className='phoneImg' src="./chess4.png" alt="Phone"/>
             </div>

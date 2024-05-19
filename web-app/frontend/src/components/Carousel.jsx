@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Modal from './Modal'; // Import the Modal component
+import Modal from './Modal'; 
 
 const CarouselContainer = styled.div`
   width: 100%;
@@ -130,8 +130,8 @@ const Carousel = ({ items }) => {
       
       {isModalOpen && (
         <Modal 
-          onClose={closeModal}>
-        </Modal>
+          onClose={closeModal}
+          objUrl='./chess.obj' />
       )}
     </CarouselContainer>
   );

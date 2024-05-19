@@ -1,4 +1,5 @@
-import React, {Suspense} from 'react';
+import React, {Suspense,useEffect,useRef} from 'react';
+import * as THREE from 'three';
 import styled from 'styled-components';
 import { Canvas, useLoader } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
@@ -49,21 +50,60 @@ function Model({ url }) {
     return <primitive object={obj} />;
 }
 
-const Modal = ({ children, onClose }) => {
+const Modal = ({ onClose, objUrl }) => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const loader = new OBJLoader(); // Use OBJLoader from Three.js
+
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+
+    camera.position.z = 5;
+
+    loader.load(
+      objUrl,
+      (object) => {
+        scene.add(object);
+      },
+      (xhr) => {
+        console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+      },
+      (error) => {
+        console.error('An error happened', error);
+      }
+    );
+
+    const animate = () => {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+    };
+
+    animate();
+
+    return () => {
+      container.removeChild(renderer.domElement);
+    };
+  }, [objUrl]);
+  
   return (
     <ModalOverlay>
       <ModalContent>
         <CloseButton onClick={onClose}>X</CloseButton>
-        {/* {children} */}
 
-        <Canvas>
+        <div ref={containerRef}></div>  
+        {/* <Canvas>
             <ambientLight />
             <pointLight position={[10, 10, 10]} />
             <Suspense fallback={null}>
                 <Model url="/chess.obj" />
             </Suspense>
             <OrbitControls />
-        </Canvas>
+        </Canvas> */}
 
       </ModalContent>
     </ModalOverlay>
