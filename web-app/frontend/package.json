@@ -24,6 +24,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.23.1",
     "react-swipeable": "^7.0.1",
+    "react-three-fiber": "^6.0.13",
     "split-type": "^0.3.4",
     "styled-components": "^6.1.11",
     "swiper": "^11.1.3",
