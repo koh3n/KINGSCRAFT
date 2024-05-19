@@ -1,30 +1,34 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, Dimensions } from "react-native";
 
-export default function ProjectItem({ imageUrl, name }) {
-  console.log("ProjectItem Props:", { imageUrl, name });
+const { width } = Dimensions.get("window");
+
+export default function ProjectItem({ imageUrl }) {
+  console.log("ProjectItem Props:", { imageUrl });
   return (
     <View style={styles.item}>
-      <Image source={{ uri: imageUrl }} style={styles.image} />
-      <Text style={styles.name}>{name}</Text>
+      <Image
+        source={{ uri: imageUrl }}
+        style={styles.image}
+        resizeMode="contain"
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   item: {
-    width: 100,
-    height: 120,
-    margin: 10,
+    width: width / 2 - 20,
+    height: width / 2 - 20,
+    marginVertical: 10,
     justifyContent: "center",
     alignItems: "center",
   },
   image: {
-    width: 100,
-    height: 100,
-  },
-  name: {
-    marginTop: 5,
-    textAlign: "center",
+    width: "100%",
+    height: "100%",
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "black",
   },
 });
