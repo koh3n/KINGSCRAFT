@@ -3,7 +3,7 @@ import { View, StyleSheet, FlatList, ActivityIndicator } from "react-native";
 import Navbar from "../components/Navbar";
 import BottomBar from "../components/BottomBar";
 import ProjectItem from "../components/ProjectItem";
-import { getImages, parse_url } from "../utils/utils";
+import { getImages } from "../utils/utils";
 
 export default function ProjectsScreen({ navigation }) {
   const [projects, setProjects] = useState([]);
@@ -15,16 +15,7 @@ export default function ProjectsScreen({ navigation }) {
       const images = await getImages(username);
       console.log("Images:", images);
 
-      console.log("NAME:", parse_url(images[0]));
-
-      const projectDetails = images.map((imageUrl) => ({
-        imageUrl,
-        name: parse_url(imageUrl),
-      }));
-
-      console.log("Project Details:", projectDetails);
-      setProjects(projectDetails);
-
+      setProjects(images);
       console.log("Projects:", projects);
     } catch (error) {
       console.error("Error fetching images: ", error.message);
@@ -51,12 +42,10 @@ export default function ProjectsScreen({ navigation }) {
       <View style={styles.content}>
         <FlatList
           data={projects}
-          renderItem={({ item }) => (
-            <ProjectItem imageUrl={item.imageUrl} name={item.name} />
-          )}
+          renderItem={({ item }) => <ProjectItem imageUrl={item} />}
           keyExtractor={(item, index) => index.toString()}
-          numColumns={3}
-          contentContainerStyle={styles.grid}
+          numColumns={2}
+          columnWrapperStyle={styles.row}
         />
       </View>
       <BottomBar navigation={navigation} />
@@ -67,14 +56,14 @@ export default function ProjectsScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#d1d1d1",
   },
   content: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
-  grid: {
-    justifyContent: "center",
+  row: {
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
   },
   loadingContainer: {
     flex: 1,
