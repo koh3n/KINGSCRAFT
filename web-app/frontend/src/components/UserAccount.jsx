@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../firebase/firebase";
+import "../styles/UserAccount.css"
 
 const UserAccount = () => {
   const [user, setUser] = useState(null);
@@ -27,7 +28,7 @@ const UserAccount = () => {
 
   return (
     // renders if user is logged in
-    <div>
+    <div className="user-photo-cont">
       {user ? (
         <div>
           <img src={user.photoURL} alt="Profile" />

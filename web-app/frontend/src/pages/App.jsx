@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import Dashboard from './Dashboard';
 
 
+
 const HomePage = () => {
   const [user, setUser] = useState(null);
 
@@ -32,7 +33,7 @@ const HomePage = () => {
              <p className='title'>ELEVATE YOUR 3D <br/> PRINTING CAPABILITIES</p>
              <p className='summary'>
                To be, or not to be: that is the question: whether 'tis nobler in the mind to suffer 
-               the slings and arrows of outrageous fortune, or art-ache and the thousand natural shocks 
+               the <br />slings and arrows of outrageous fortune, or art-ache and the thousand natural shocks <br />
                that flesh is heir to, 'tis a consummation of buttplugs
              </p>
              <div className='button-cont'>
