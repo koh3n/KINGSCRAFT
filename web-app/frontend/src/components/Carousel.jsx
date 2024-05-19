@@ -131,7 +131,7 @@ const Carousel = ({ items }) => {
       {isModalOpen && (
         <Modal 
           onClose={closeModal}
-          objUrl='./chess.obj' />
+          objUrl='./chess_2.obj' />
       )}
     </CarouselContainer>
   );

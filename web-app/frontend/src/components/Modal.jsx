@@ -1,9 +1,8 @@
-import React, {Suspense,useEffect,useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import styled from 'styled-components';
 import { Canvas, useLoader } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
 import '../styles/Modal.css'
 
@@ -56,17 +55,29 @@ const Modal = ({ onClose, objUrl }) => {
   useEffect(() => {
     const container = containerRef.current;
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000); // Aspect ratio 1 for square view
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     const loader = new OBJLoader(); // Use OBJLoader from Three.js
-
+  
+    const setSize = () => {
+      const { width, height } = container.getBoundingClientRect();
+      renderer.setSize(width, height);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    };
+  
+    setSize(); // Set initial size
+  
+    window.addEventListener('resize', setSize); // Update size on window resize
+  
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
-
+  
     camera.position.z = 5;
-
+  
     loader.load(
-      objUrl,
+  
+      './chess_2.obj',
       (object) => {
         scene.add(object);
       },
@@ -77,15 +88,16 @@ const Modal = ({ onClose, objUrl }) => {
         console.error('An error happened', error);
       }
     );
-
+  
     const animate = () => {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
     };
-
+  
     animate();
-
+  
     return () => {
+      window.removeEventListener('resize', setSize);
       container.removeChild(renderer.domElement);
     };
   }, [objUrl]);
@@ -94,17 +106,7 @@ const Modal = ({ onClose, objUrl }) => {
     <ModalOverlay>
       <ModalContent>
         <CloseButton onClick={onClose}>X</CloseButton>
-
         <div ref={containerRef}></div>  
-        {/* <Canvas>
-            <ambientLight />
-            <pointLight position={[10, 10, 10]} />
-            <Suspense fallback={null}>
-                <Model url="/chess.obj" />
-            </Suspense>
-            <OrbitControls />
-        </Canvas> */}
-
       </ModalContent>
     </ModalOverlay>
   );

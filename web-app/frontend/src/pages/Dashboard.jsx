@@ -40,7 +40,7 @@ const Dashboard = ({ images }) => {
       <div className="dashboard">
         {/* <ThreeDisplay /> */}
         <UserAccount />
-        <Carousel items={items} />
+        <DisplayGrid />
       </div>
     </div>
   );
