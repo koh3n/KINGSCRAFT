@@ -13,20 +13,23 @@ import { getImages } from '../util/utils.js'
 
 const HomePage = () => {
   const [user, setUser] = useState(null);
-  const [images, setImages] = useState(['']);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
+    const fetchUserData = async (user) => {
+      try {
+        const fetchedImages = await getImages(user.uid);
+        setImages(fetchedImages);
+        console.log("Fetched images:", fetchedImages);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
     const unsub = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-        setImages(getImages(user.uid));
-        console.log(user.uid);
-        console.log(images);
-        console.log([])
-
-        for (let i = 0; i < images.length; i++) {
-          console.log(images[0]);
-        }
+        fetchUserData(user);
       } else {
         setUser(null);
       }
@@ -34,6 +37,10 @@ const HomePage = () => {
 
     return () => unsub();
   }, []);
+
+  useEffect(() => {
+    console.log("images state:", images);
+  }, [images]);
 
   return (
     <>
@@ -59,8 +66,7 @@ const HomePage = () => {
           </section>
         </div>
       ) : (
-        // <Dashboard images={images}/>
-        <Dashboard images={[]}/>
+        <Dashboard images={images}/>
       )}
     </>
   );
