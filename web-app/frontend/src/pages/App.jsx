@@ -51,7 +51,7 @@ const HomePage = () => {
           </section>
         </div>
       ) : (
-        <Dashboard />
+        <Dashboard images={images}/>
       )}
     </>
   );

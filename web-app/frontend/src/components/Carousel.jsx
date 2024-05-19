@@ -67,7 +67,7 @@ const Carousel = ({ items }) => {
     setCurrentIndex((prevIndex) =>
       prevIndex === items.length - 1 ? 0 : prevIndex + 1
     );
-  };
+  };``
 
   const goToSlide = (index) => {
     setCurrentIndex(index);

@@ -15,15 +15,20 @@ const CarouselItemContent = styled.div`
 `;
 
 const Dashboard = (images) => {
-  // const items = images.map((image, index) => (
-  //   <CarouselItemContent key={index}>
-  //     <img src={image} alt={`Slide ${index + 1}`} />
-  //   </CarouselItemContent>
-  // ));
+  let items = [];
 
-  const items = [
-    <CarouselItemContent>First Slide</CarouselItemContent>
-  ]
+  console.log('images: ', images)
+  if (!images || images.length === 0) {
+    items = (
+      <div>Download the Mobile App to Start a New Project</div>
+    );
+  } else {
+    items = images.map((image, index) => (
+      <CarouselItemContent key={index}>
+        <img src={image} alt={`Slide ${index + 1}`} />
+      </CarouselItemContent>
+    ));
+  }
 
   return (
     <div className="main">
