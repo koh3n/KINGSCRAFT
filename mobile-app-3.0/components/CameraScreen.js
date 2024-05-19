@@ -11,7 +11,7 @@ export default function CameraScreen({ navigation }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [projectName, setProjectName] = useState('');
   const cameraRef = useRef(null);
-
+  const [uri, setUri] = useState('');
   if (!permission) {
     // Camera permissions are still loading.
     return <View />;
@@ -42,7 +42,8 @@ export default function CameraScreen({ navigation }) {
   async function takePicture() {
     if (cameraRef.current && isCameraReady) {
       const photo = await cameraRef.current.takePictureAsync();
-      console.log(photo);
+      console.log(photo.uri);
+      setUri(photo.uri);
       setIsModalVisible(true); // Show the modal after taking a picture
     }
   }
@@ -51,6 +52,33 @@ export default function CameraScreen({ navigation }) {
     console.log('Project Name:', projectName);
     setIsModalVisible(false);
     // Navigate to another screen or perform other actions with the project name and photo
+    let formData = new FormData();
+    formData.append('user-name', 'username_value');
+    formData.append('file-name', 'chess.png');
+
+    // Convert the image to a blob
+    let localUri = uri;
+    let filename = localUri.split('/').pop();
+    let match = /\.(\w+)$/.exec(filename);
+    let type = match ? `image/${match[1]}` : `image`;
+
+    formData.append('image', { uri: localUri, name: filename, type });
+
+    // Step 3: Send the request
+    fetch('http://142.58.61.120:5001/upload', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then(response => response.text())
+    .then(result => {
+      console.log('Success:', result);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   }
 
   function handleCancel() {
