@@ -53,6 +53,9 @@ def object_route():
 
     return get_object(username, objectname), 200
 
+@app.route("/mobile", methods = ['POST'])
+def mobile_call():
+    return all_in_one()
 
 if __name__ == '__main__':
-        app.run(debug=True, port= 5001, host='0.0.0.0')
+    app.run(debug=True, port= 5001, host='0.0.0.0')

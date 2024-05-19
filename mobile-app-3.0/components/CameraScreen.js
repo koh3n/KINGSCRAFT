@@ -54,7 +54,7 @@ export default function CameraScreen({ navigation }) {
     // Navigate to another screen or perform other actions with the project name and photo
     let formData = new FormData();
     formData.append('user-name', 'username_value');
-    formData.append('file-name', 'chess.png');
+    formData.append('file-name', projectName);
 
     // Convert the image to a blob
     let localUri = uri;
@@ -65,7 +65,7 @@ export default function CameraScreen({ navigation }) {
     formData.append('image', { uri: localUri, name: filename, type });
 
     // Step 3: Send the request
-    fetch('http://142.58.61.120:5001/upload', {
+    fetch('http://142.58.61.120:5001/mobile', {
       method: 'POST',
       body: formData,
       headers: {
@@ -110,7 +110,7 @@ export default function CameraScreen({ navigation }) {
         }}
       >
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>Enter Project Name:</Text>
+          <Text style={styles.modalText}>Enter File Name:</Text>
           <TextInput
             style={styles.input}
             onChangeText={setProjectName}
