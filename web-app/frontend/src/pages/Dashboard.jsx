@@ -3,6 +3,7 @@ import GoogleLogin from '../components/GoogleLogin';
 import UserAccount from '../components/UserAccount';
 import Carousel from '../components/Carousel'; 
 import styled from 'styled-components';
+import "../styles/Dashboard.css"
 
 const CarouselItemContent = styled.div`
   display: flex;
@@ -24,6 +25,7 @@ const Dashboard = (images) => {
   return (
     <div className="dashboard">
       <Carousel items={items} />
+
       <div className='left-div'>
         <div className='button-cont'>
           <UserAccount />
