@@ -6,6 +6,8 @@ import firebase from "../firebase/firebase";
 import '../styles/App.css';
 import Dashboard from './Dashboard';
 
+import getImages from '../util/utils.js'
+
 const HomePage = () => {
   const [user, setUser] = useState(null);
   const [images, setImages] = useState(['']);
@@ -15,6 +17,8 @@ const HomePage = () => {
       if (user) {
         setUser(user);
         setImages(user.uid);
+
+        console.log(images);
       } else {
         setUser(null);
       }

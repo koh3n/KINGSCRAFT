@@ -1,5 +1,6 @@
-const fs = require('fs');
-const axios = require('axios');
+// import { get } from 'https';
+import axios from 'axios';
+import fs from 'fs'
 
 async function writeUrl(url, filePath) {
     try {
@@ -9,7 +10,7 @@ async function writeUrl(url, filePath) {
         // Create a write stream to the specified file path
         const writer = fs.createWriteStream(filePath);
 
-        // Pipe the response data to the file
+        // Pipe the response data to the filea
         response.data.pipe(writer);
 
         // Return a promise that resolves when the file is fully written
@@ -38,64 +39,56 @@ function parse_url(url) {
         // Return the model name without the extension
         return modelNameWithoutExtension;
     }
-    // Return null if 'models' is not found in the URL or if the URL is invalid
     return null;
 }
 
-
-
 async function get_all_images(username) {
-    const url = 'http://127.0.0.1:5001/images'; // Replace with your API endpoint
-    const data = {
-      username: username
-    };
-  
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-  
-      const responseData = await response.json();
-      console.log('Success:', responseData);
-      return responseData.images;
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
+  const url = 'http://127.0.0.1:5001/images'; 
+  const data = {
+    username: username
+  };
 
-
-  async function get_object(username, objectname) {
-    const url = 'http://127.0.0.1:5001/object'; // Replace with your API endpoint
-    const data = {
-      username: username,
-      objectname: objectname
-    };
-  
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        'Content-Type': 'application/json'
       }
-  
-      const responseData = await response.json();
-      console.log('Success:', responseData);
-      return responseData;
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    });
+
+    console.log('Success:', response.data);
+    return response.data.images;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error; 
   }
+}
+
+async function get_object(username, objectname) {
+  const url = 'http://127.0.0.1:5001/object'; // Replace with your API endpoint
+  const data = {
+    username: username,
+    objectname: objectname
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    console.log('Success:', responseData);
+    return responseData;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+export default get_all_images
