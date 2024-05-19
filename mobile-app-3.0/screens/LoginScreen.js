@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
   text: {
     fontSize: 24,
     marginBottom: 20,

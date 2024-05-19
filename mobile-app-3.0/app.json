@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "mobile-app-3.0",
-    "slug": "mobile-app-3.0",
+    "slug": "sfuhacks",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,16 +12,24 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jaydenpiao.sfuhacks"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jaydenpiao.sfuhacks"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "53e4a60d-c450-4721-8b6e-63606a617840"
+      }
+    },
+    "owner": "jaydenpiao"
   }
 }

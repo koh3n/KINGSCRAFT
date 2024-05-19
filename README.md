@@ -8,3 +8,7 @@ stormhacks 2024
 - npm install
 - to run with expo go: npx expo start
 - then scan with phone camera
+
+## eas
+
+- npx eas-cli [COMMAND]

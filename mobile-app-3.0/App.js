@@ -26,8 +26,10 @@ import LandingScreen from "./screens/LandingScreen";
 import LoginScreen from "./screens/LoginScreen";
 import ProjectsScreen from "./screens/ProjectsScreen";
 import CameraScreen from "./components/CameraScreen";
+import DeviceInfo from "react-native-device-info";
 
 const Stack = createStackNavigator();
+console.log("@ device   ", DeviceInfo.getBundleId());
 
 export default function App() {
   return (
