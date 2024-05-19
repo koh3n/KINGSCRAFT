@@ -65,7 +65,7 @@ async function get_all_images(username) {
   
       const responseData = await response.json();
       console.log('Success:', responseData);
-      return responseData;
+      return responseData.images;
     } catch (error) {
       console.error('Error:', error);
     }
