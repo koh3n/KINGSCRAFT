@@ -17,7 +17,7 @@ const HomePage = () => {
       if (user) {
         setUser(user);
         setImages(getImages(user.uid));
-
+        console.log(user.uid);
         console.log(images);
       } else {
         setUser(null);
