@@ -15,12 +15,17 @@ export default function ProjectsScreen({ navigation }) {
       const images = await getImages(username);
       console.log("Images:", images);
 
+      console.log("NAME:", parse_url(images[0]));
+
       const projectDetails = images.map((imageUrl) => ({
         imageUrl,
         name: parse_url(imageUrl),
       }));
 
+      console.log("Project Details:", projectDetails);
       setProjects(projectDetails);
+
+      console.log("Projects:", projects);
     } catch (error) {
       console.error("Error fetching images: ", error.message);
     } finally {

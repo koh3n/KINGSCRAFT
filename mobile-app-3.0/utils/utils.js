@@ -23,7 +23,7 @@ import axios from "axios";
 //   }
 // }
 
-function parse_url(url) {
+export function parse_url(url) {
   // Split the URL by '/'
   const parts = url.split("/");
   // Find the index of 'models' in the URL
