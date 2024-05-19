@@ -18,6 +18,7 @@ const CarouselItemContent = styled.div`
 
 const Dashboard = ({ images }) => {
 
+
   return (
     <div className="main">
       <div className="dashboard">
