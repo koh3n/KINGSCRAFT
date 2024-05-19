@@ -13,7 +13,7 @@ export default function LandingScreen({ navigation }) {
         <Button
           title="Create!"
           onPress={() => navigation.navigate("Projects")}
-          color="blue" // Customize the button color if needed
+          color="#4287f5" // Customize the button color if needed
         />
       </View>
     </View>
