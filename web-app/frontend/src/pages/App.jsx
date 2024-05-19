@@ -6,7 +6,7 @@ import firebase from "../firebase/firebase";
 import '../styles/App.css';
 import Dashboard from './Dashboard';
 
-import getImages from '../util/utils.js'
+import { getImages } from '../util/utils.js'
 
 const HomePage = () => {
   const [user, setUser] = useState(null);
@@ -16,7 +16,7 @@ const HomePage = () => {
     const unsub = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-        setImages(user.uid);
+        setImages(getImages(user.uid));
 
         console.log(images);
       } else {

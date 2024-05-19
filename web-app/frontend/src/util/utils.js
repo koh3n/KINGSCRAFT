@@ -42,7 +42,7 @@ function parse_url(url) {
     return null;
 }
 
-async function get_all_images(username) {
+export async function getImages(username) {
   const url = 'http://127.0.0.1:5001/images'; 
   const data = {
     username: username
@@ -90,5 +90,3 @@ async function get_object(username, objectname) {
     console.error('Error:', error);
   }
 }
-
-export default get_all_images
