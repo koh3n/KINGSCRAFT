@@ -8,7 +8,7 @@ import { getImages } from "../utils/utils";
 export default function ProjectsScreen({ navigation }) {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const username = "test-user"; // Replace with actual username
+  const username = "Y0f8s3ZNqGP0ZLEOb80Yo3jUp7x1"; // Replace with actual username
 
   const fetchProjects = async () => {
     try {
