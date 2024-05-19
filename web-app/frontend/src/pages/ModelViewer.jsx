@@ -10,14 +10,16 @@ function Model({ url }) {
 
 function ModelViewer() {
   return (
-    <Canvas>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <Suspense fallback={null}>
-        <Model url="/chess.obj" />
-      </Suspense>
-      <OrbitControls/>
-    </Canvas>
+    <div style={{ width: '100%', height: '100%' }}>
+      <Canvas style={{ background: 'transparent' }}>
+        <ambientLight />
+        <pointLight position={[10, 10, 10]} />
+        <Suspense fallback={null}>
+          <Model url="/chess.obj" />
+        </Suspense>
+        <OrbitControls />
+      </Canvas>
+    </div>
   );
 }
 

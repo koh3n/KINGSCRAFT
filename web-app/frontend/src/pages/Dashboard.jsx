@@ -1,6 +1,5 @@
 import React from 'react';
 import UserAccount from '../components/UserAccount';
-import Carousel from '../components/Carousel'; 
 import styled from 'styled-components';
 import "../styles/Dashboard.css";
 import DisplayGrid from '../components/DisplayGrid';
@@ -25,6 +24,15 @@ const Dashboard = ({ images }) => {
         {/* <ThreeDisplay /> */}
         <UserAccount />
         <DisplayGrid images={images} />
+
+        {/* {isModalOpen && <Modal onClose={handleClose} objUrl={url} />}
+        <DashboardContainer className="dashboard">
+          <img></img>
+          <div style={{ width: '100%', height: '500px' }}>
+            <ModelViewer />
+          </div>
+          <button onClick={handleOpen}>360° View</button>
+        </DashboardContainer> */}
       </div>
     </div>
   );

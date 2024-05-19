@@ -6,9 +6,6 @@ import firebase from "../firebase/firebase";
 import '../styles/App.css';
 import Dashboard from './Dashboard';
 
-import { Link } from 'react-router-dom';
-import Rap from './Rap.jsx';
-
 import { getImages } from '../util/utils.js'
 
 const HomePage = () => {
