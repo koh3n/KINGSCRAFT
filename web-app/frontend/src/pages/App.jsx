@@ -60,7 +60,7 @@ const HomePage = () => {
         </div>
       ) : (
         // <Dashboard images={images}/>
-        <Dashboard images={[]}/>
+        <Dashboard images={images}/>
       )}
     </>
   );
