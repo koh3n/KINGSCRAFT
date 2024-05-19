@@ -44,8 +44,8 @@ def get_all_images(username):
     return jsonify({"images": image_urls})
 
 def get_object(username, objectname):
-    key = username + '/models/' + objectname
-
+    key = username + '/models/' + objectname + '.obj'
+    print(key)
     try:
         url = s3_client.generate_presigned_url(
             'get_object',
@@ -56,6 +56,7 @@ def get_object(username, objectname):
     except Exception as e:
         print(f"Error generating URL for {key}: {e}")
 
+    print(url)
     return jsonify(url)
 
     
