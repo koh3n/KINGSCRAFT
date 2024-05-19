@@ -1,17 +1,30 @@
 import React from "react";
 import GoogleLogin from '../components/GoogleLogin';
 import UserAccount from '../components/UserAccount';
+import Carousel from '../components/Carousel'; 
+import styled from 'styled-components';
 
+const CarouselItemContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background-color: lightblue;
+  font-size: 24px;
+  color: white;
+`;
 
+const Dashboard = (images) => {
+  const items = [
+    <CarouselItemContent>Slide 1</CarouselItemContent>,
+    <CarouselItemContent>Slide 2</CarouselItemContent>,
+    <CarouselItemContent>Slide 3</CarouselItemContent>,
+  ];
 
-import { Carousel } from "./components/carousel-5/Carousel";
-
-
-const Dashboard = () => {
   return (
     <div className="dashboard">
-        <Carousel/>
-        <div className='left-div'>
+      <Carousel items={items} />
+      <div className='left-div'>
         <div className='button-cont'>
           <UserAccount />
           <GoogleLogin />
@@ -19,6 +32,6 @@ const Dashboard = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Dashboard;
