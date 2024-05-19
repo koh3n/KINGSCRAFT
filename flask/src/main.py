@@ -1,10 +1,11 @@
 from flask import Blueprint, Flask, request, jsonify
 from util.api_util import *
 from util.s3_util import *
+from flask_cors import CORS
 
 
 app = Flask(__name__)
-
+CORS(app)
 
 
 @app.route("/upload", methods = ['POST'])
