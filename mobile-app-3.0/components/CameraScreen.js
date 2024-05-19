@@ -53,7 +53,7 @@ export default function CameraScreen({ navigation }) {
     setIsModalVisible(false);
     // Navigate to another screen or perform other actions with the project name and photo
     let formData = new FormData();
-    formData.append('user-name', 'username_value');
+    formData.append('user-name', 'Y0f8s3ZNqGP0ZLEOb80Yo3jUp7x1');
     formData.append('file-name', projectName);
 
     // Convert the image to a blob
