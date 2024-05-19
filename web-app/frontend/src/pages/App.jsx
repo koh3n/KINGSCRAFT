@@ -8,7 +8,7 @@ import Dashboard from './Dashboard';
 
 import { getImages } from '../util/utils.js'
 
-const HomePage = () => {
+const Homepage = () => {
   const [user, setUser] = useState(null);
   const [images, setImages] = useState([]);
 
@@ -69,4 +69,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Homepage;
