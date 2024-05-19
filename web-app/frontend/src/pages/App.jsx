@@ -48,9 +48,9 @@ const Homepage = () => {
             <div className='left-div'>
               <p className='title'>ELEVATE YOUR 3D <br/> PRINTING CAPABILITIES</p>
               <p className='summary'>
-                To be, or not to be: that is the question: whether 'tis nobler in the mind to suffer 
-                the <br />slings and arrows of outrageous fortune, or art-ache and the thousand natural shocks <br />
-                that flesh is heir to, 'tis a consummation of buttplugs
+              This is KingsCraft. The place that can turn your single-angle photos into 
+              stunning 3D models <br />using advanced AI. Download our app today to seamlessly 
+              scan your pictures and generate complete 3D models, enhancing your digital experiences with ease.
               </p>
               <div className='button-cont'>
                 <UserAccount />
