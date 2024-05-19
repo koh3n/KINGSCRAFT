@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "mobile-app-3.0",
-    "slug": "mobile-app-3.0",
+    "slug": "kingscraft",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,16 +12,40 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your Camera."
+      },
+      "bundleIdentifier": "com.jerrz.kingscraft"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "package": "com.mobile_app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "recordAudioAndroid": true
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "a5a745df-7987-45c6-8854-9bc8f3ce7d6c"
+      }
+    },
+    "owner": "jerrz"
   }
 }
