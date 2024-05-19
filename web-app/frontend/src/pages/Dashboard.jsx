@@ -4,6 +4,7 @@ import Carousel from '../components/Carousel';
 import styled from 'styled-components';
 import "../styles/Dashboard.css";
 
+
 const CarouselItemContent = styled.div`
   display: flex;
   justify-content: center;
@@ -37,6 +38,7 @@ const Dashboard = ({ images }) => {
   return (
     <div className="main">
       <div className="dashboard">
+        {/* <ThreeDisplay /> */}
         <UserAccount />
         <Carousel items={items} />
       </div>

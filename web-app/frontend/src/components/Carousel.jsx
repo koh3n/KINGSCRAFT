@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Modal from './Modal'; // Import the Modal component
 
 const CarouselContainer = styled.div`
   width: 100%;
@@ -74,6 +75,7 @@ const ViewButton = styled.button`
 
 const Carousel = ({ items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -91,6 +93,14 @@ const Carousel = ({ items }) => {
     setCurrentIndex(index);
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const translateValue = currentIndex * 100;
 
   return (
@@ -100,23 +110,29 @@ const Carousel = ({ items }) => {
           <CarouselItem key={index}>
             {item.image}
             <Title>{item.title}</Title>
-            <ViewButton onClick={() => window.location.href = item.downloadLink}>
-              360° View
-            </ViewButton>
+            <ViewButton onClick={openModal}>360° View</ViewButton>
           </CarouselItem>
         ))}
       </CarouselInner>
+
       <Arrow direction="left" onClick={prevSlide}>
         &#10094;
       </Arrow>
       <Arrow direction="right" onClick={nextSlide}>
         &#10095;
       </Arrow>
+
       <DotsContainer>
         {items.map((_, index) => (
           <Dot key={index} active={index === currentIndex} onClick={() => goToSlide(index)} />
         ))}
       </DotsContainer>
+      
+      {isModalOpen && (
+        <Modal 
+          onClose={closeModal}>
+        </Modal>
+      )}
     </CarouselContainer>
   );
 };

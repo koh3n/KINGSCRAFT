@@ -6,6 +6,8 @@ import firebase from "../firebase/firebase";
 import '../styles/App.css';
 import Dashboard from './Dashboard';
 
+import Rap from './Rap.jsx';
+
 import { getImages } from '../util/utils.js'
 
 const HomePage = () => {
@@ -34,6 +36,7 @@ const HomePage = () => {
 
   return (
     <>
+      <Rap/>
       <img className='grid' src="./grid.png" alt="Grid"/>
       {!user ? (
         <div>
@@ -57,7 +60,7 @@ const HomePage = () => {
         </div>
       ) : (
         // <Dashboard images={images}/>
-        <Dashboard images={images}/>
+        <Dashboard images={[]}/>
       )}
     </>
   );
