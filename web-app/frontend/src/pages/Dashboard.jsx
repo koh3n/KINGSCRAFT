@@ -15,11 +15,15 @@ const CarouselItemContent = styled.div`
 `;
 
 const Dashboard = (images) => {
-  const items = images.map((image, index) => (
-    <CarouselItemContent key={index}>
-      <img src={image} alt={`Slide ${index + 1}`} />
-    </CarouselItemContent>
-  ));
+  // const items = images.map((image, index) => (
+  //   <CarouselItemContent key={index}>
+  //     <img src={image} alt={`Slide ${index + 1}`} />
+  //   </CarouselItemContent>
+  // ));
+
+  const items = [
+    <CarouselItemContent>First Slide</CarouselItemContent>
+  ]
 
   return (
     <div className="main">

@@ -8,11 +8,13 @@ import Dashboard from './Dashboard';
 
 const HomePage = () => {
   const [user, setUser] = useState(null);
+  const [images, setImages] = useState(['']);
 
   useEffect(() => {
     const unsub = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
+        setImages(user.uid);
       } else {
         setUser(null);
       }
@@ -45,7 +47,7 @@ const HomePage = () => {
           </section>
         </div>
       ) : (
-        <Dashboard images={['./grid.png', './chess4.png']} />
+        <Dashboard />
       )}
     </>
   );
