@@ -1,45 +1,28 @@
-// import { get } from 'https';
+// import fs from "fs";
 import axios from "axios";
-import fs from "fs";
+import { saveAs } from "file-saver";
 
 async function writeUrl(url, filePath) {
-  try {
-    // Fetch the content from the presigned URL
-    const response = await axios.get(url, { responseType: "stream" });
-
-    // Create a write stream to the specified file path
-    const writer = fs.createWriteStream(filePath);
-
-    // Pipe the response data to the filea
-    response.data.pipe(writer);
-
-    // Return a promise that resolves when the file is fully written
-    return new Promise((resolve, reject) => {
-      writer.on("finish", resolve);
-      writer.on("error", reject);
-    });
-  } catch (error) {
-    console.error("Error writing to file:", error);
-  }
+  // Fetch the content from the presigned URL
+  const response = await axios
+    .get(url, { responseType: "blob" })
+    .then((response) => {
+      // Saving the file
+      saveAs(response.data, "./temp.obj");
+    })
+    .catch((error) => console.error("Error:", error));
 }
 
 export function parse_url(url) {
-  // Split the URL by '/'
   const parts = url.split("/");
-  // Find the index of 'models' in the URL
   const modelsIndex = parts.indexOf("processed-image");
-  // If 'models' is found in the URL
   if (modelsIndex !== -1 && modelsIndex < parts.length - 1) {
-    // Get the next part after 'models'
     const modelName = parts[modelsIndex + 1];
-    // Split the model name by '?'
     const modelNameParts = modelName.split("?");
-    // Remove the file extension
     const modelNameWithoutExtension = modelNameParts[0]
       .split(".")
       .slice(0, -1)
       .join(".");
-    // Return the model name without the extension
     return modelNameWithoutExtension;
   }
   return null;
@@ -47,15 +30,11 @@ export function parse_url(url) {
 
 export async function getImages(username) {
   const url = "http://142.58.61.120:5001/images";
-  const data = {
-    username: username,
-  };
+  const data = { username: username };
 
   try {
     const response = await axios.post(url, data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     });
 
     console.log("Success:", response.data);
@@ -66,19 +45,14 @@ export async function getImages(username) {
   }
 }
 
-async function get_object(username, objectname) {
-  const url = "http://127.0.0.1:5001/object"; // Replace with your API endpoint
-  const data = {
-    username: username,
-    objectname: objectname,
-  };
+export async function get_object(username, objectname) {
+  const url = "http://142.58.61.120:5001/object";
+  const data = { username: username, objectname: objectname };
 
   try {
     const response = await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
 
@@ -93,3 +67,124 @@ async function get_object(username, objectname) {
     console.error("Error:", error);
   }
 }
+
+export async function writeToFileFromPresignedUrl(url, filePath) {
+  return writeUrl(url, filePath);
+}
+
+// // import { get } from 'https';
+// import axios from "axios";
+// import fs from "fs";
+
+// async function writeUrl(url, filePath) {
+//   try {
+//     // Fetch the content from the presigned URL
+//     const response = await axios.get(url, { responseType: "stream" });
+
+//     // Create a write stream to the specified file path
+//     const writer = fs.createWriteStream(filePath);
+
+//     // Pipe the response data to the filea
+//     response.data.pipe(writer);
+
+//     // Return a promise that resolves when the file is fully written
+//     return new Promise((resolve, reject) => {
+//       writer.on("finish", resolve);
+//       writer.on("error", reject);
+//     });
+//   } catch (error) {
+//     console.error("Error writing to file:", error);
+//   }
+// }
+
+// export function parse_url(url) {
+//   // Split the URL by '/'
+//   const parts = url.split("/");
+//   // Find the index of 'models' in the URL
+//   const modelsIndex = parts.indexOf("processed-image");
+//   // If 'models' is found in the URL
+//   if (modelsIndex !== -1 && modelsIndex < parts.length - 1) {
+//     // Get the next part after 'models'
+//     const modelName = parts[modelsIndex + 1];
+//     // Split the model name by '?'
+//     const modelNameParts = modelName.split("?");
+//     // Remove the file extension
+//     const modelNameWithoutExtension = modelNameParts[0]
+//       .split(".")
+//       .slice(0, -1)
+//       .join(".");
+//     // Return the model name without the extension
+//     return modelNameWithoutExtension;
+//   }
+//   return null;
+// }
+
+// export async function getImages(username) {
+//   const url = "http://142.58.61.120:5001/images";
+//   const data = {
+//     username: username,
+//   };
+
+//   try {
+//     const response = await axios.post(url, data, {
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     });
+
+//     console.log("Success:", response.data);
+//     return response.data.images;
+//   } catch (error) {
+//     console.error("Error:", error);
+//     throw error;
+//   }
+// }
+
+// async function get_object(username, objectname) {
+//   const url = "http://127.0.0.1:5001/object"; // Replace with your API endpoint
+//   const data = {
+//     username: username,
+//     objectname: objectname,
+//   };
+
+//   try {
+//     const response = await fetch(url, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(data),
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+
+//     const responseData = await response.json();
+//     console.log("Success:", responseData);
+//     return responseData;
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
+// }
+
+// export async function writeToFileFromPresignedUrl(url, filePath) {
+//   try {
+//     // Fetch the content from the presigned URL
+//     const response = await axios.get(url, { responseType: "stream" });
+
+//     // Create a write stream to the specified file path
+//     const writer = fs.createWriteStream(filePath);
+
+//     // Pipe the response data to the file
+//     response.data.pipe(writer);
+
+//     // Return a promise that resolves when the file is fully written
+//     return new Promise((resolve, reject) => {
+//       writer.on("finish", resolve);
+//       writer.on("error", reject);
+//     });
+//   } catch (error) {
+//     console.error("Error writing to file:", error);
+//   }
+// }

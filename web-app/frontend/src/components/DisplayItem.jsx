@@ -1,18 +1,20 @@
 import React from 'react';
 import '../styles/DisplayItem.css';
-import { parse_url } from '../util/utils';
-import { useNavigate } from 'react-router-dom';
+import { get_object, parse_url } from '../util/utils';
+import { Link } from 'react-router-dom';
+import firebase from '../firebase/firebase';
 
 const DisplayItem = ({ imageUrl }) => {
-  const navigate = useNavigate();
   const name = parse_url(imageUrl);
-
-  const handleClick = () => {
-    navigate(`/viewer/${name}`);
-  }
+  console.log(name);
+  // console.log("url", imageUrl);
+  const url = get_object(firebase.auth().currentUser.uid, name);  
+  console.log(url);
   return (
-    <div className="display-item" onClick={handleClick}>
-      <img src={imageUrl} alt="Display" />
+    <div className="display-item">
+      <Link to={url}>
+        <img src={imageUrl} alt="Display" />
+      </Link>
     </div>
   );
 };

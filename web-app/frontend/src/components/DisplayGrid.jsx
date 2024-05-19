@@ -1,6 +1,7 @@
 import React from 'react';
 import DisplayItem from './DisplayItem';
 import '../styles/DisplayGrid.css';
+import { Link, Route } from 'react-router-dom';
 
 const DisplayGrid = ({ images }) => {
     // console.log(images);
@@ -8,7 +9,9 @@ const DisplayGrid = ({ images }) => {
   return (
     <div className="display-grid">
       {images.map((url, index) => (
-        <DisplayItem key={index} imageUrl={url} />
+        // <Route path='viewer/:index' element={<Viewer />}>
+          <DisplayItem key={index} imageUrl={url} />
+        // </Route>
       ))}
       
     </div>
