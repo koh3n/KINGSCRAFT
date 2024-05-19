@@ -1,3 +1,27 @@
+const fs = require('fs');
+const axios = require('axios');
+
+async function writeUrl(url, filePath) {
+    try {
+        // Fetch the content from the presigned URL
+        const response = await axios.get(url, { responseType: 'stream' });
+
+        // Create a write stream to the specified file path
+        const writer = fs.createWriteStream(filePath);
+
+        // Pipe the response data to the file
+        response.data.pipe(writer);
+
+        // Return a promise that resolves when the file is fully written
+        return new Promise((resolve, reject) => {
+            writer.on('finish', resolve);
+            writer.on('error', reject);
+        });
+    } catch (error) {
+        console.error('Error writing to file:', error);
+    }
+}
+
 function parse_url(url) {
     // Split the URL by '/'
     const parts = url.split('/');
