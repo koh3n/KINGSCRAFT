@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Button, StyleSheet } from "react-native";
+import { View, TouchableOpacity, Image, StyleSheet } from "react-native";
 
 export default function BottomBar({ navigation }) {
   const handleOpenCamera = () => {
@@ -8,7 +8,13 @@ export default function BottomBar({ navigation }) {
 
   return (
     <View style={styles.bottombar}>
-      <Button title="Camera" onPress={handleOpenCamera} />
+      <TouchableOpacity onPress={handleOpenCamera}>
+        <Image
+          source={require("../assets/images/camera.png")}
+          style={styles.camera}
+        />
+      </TouchableOpacity>
+      {/* <Button title="Camera" onPress={handleOpenCamera} /> */}
     </View>
   );
 }
@@ -19,5 +25,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#d1d1d1",
     justifyContent: "center",
     alignItems: "center",
+  },
+  camera: {
+    width: 80,
+    height: 80,
+    marginBottom: 70,
   },
 });

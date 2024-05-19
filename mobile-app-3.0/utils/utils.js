@@ -46,7 +46,7 @@ export function parse_url(url) {
 }
 
 export async function getImages(username) {
-  const url = "http://127.0.0.1:5001/images";
+  const url = "http://142.58.61.120:5001/images";
   const data = {
     username: username,
   };
