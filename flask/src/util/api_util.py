@@ -71,14 +71,19 @@ def preprocess():
     download_path = os.path.join(local_storage_path,file_name)
     # s3_client.download_file(bucket_name, key, download_path)
 
-    gradio_client = Client("SIGMitch/InstantMesh")
     url = s3_client.generate_presigned_url(
                 'get_object',
                 Params={'Bucket': bucket_name, 'Key': key},
                 ExpiresIn=3600  # URL expiration time in seconds
             )
-    src = gradio_client.predict(input_image=url, do_remove_background=True, api_name="/preprocess")
     
+    try:
+        gradio_client = Client("SIGMitch/InstantMesh")
+        src = gradio_client.predict(input_image=url, do_remove_background=True, api_name="/preprocess")
+    except Exception as e:
+        gradio_client = Client('TencentARC/InstantMesh')
+        src = gradio_client.predict(input_image=url, do_remove_background=True, api_name="/preprocess")
+
     # os.remove(download_path)
     shutil.move(src, download_path)
 
@@ -101,17 +106,23 @@ def generate_multiview():
         return 'file-name required in data', 400
     file_name = request.form['file-name']
 
-    gradio_client = Client("SIGMitch/InstantMesh")
+    
     src=''
-
+    key = user_name + "/processed-image/" + file_name
+    url = s3_client.generate_presigned_url(
+                'get_object',
+                Params={'Bucket': bucket_name, 'Key': key},
+                ExpiresIn=3600  # URL expiration time in seconds
+            )
     try: 
-        src = gradio_client.predict(input_image=file(path),
+        gradio_client = Client("SIGMitch/InstantMesh")
+        src = gradio_client.predict(input_image=url,
                               sample_steps=75,
                               sample_seed=42,
                               api_name="/generate_mvs")
     except:
-        gradio_client = Client("TecentARC/InstantMesh")
-        src = gradio_client.predict(input_image=file(path),
+        gradio_client = Client("TencentARC/InstantMesh")
+        src = gradio_client.predict(input_image=url,
                                 sample_steps=75,
                                 sample_seed=42,
                                 api_name="/generate_mvs")
@@ -126,9 +137,19 @@ def generate_multiview():
 
     os.remove(src)
 
-    return 'Multiview Image generated successfully', 200
+    print("Generating model")
+    src = gradio_client.predict(api_name='/make3d')
+    filesplit = file_name.split('.')
+    bucket_key = user_name + "/models/" + filesplit[0] + '.obj'
+    try:
+        bucket.upload_file(Key=bucket_key, Filename=src[0])
+        print("Model uploaded successfully")
+    except Exception as e:
+        print(e)
+    
+    return 'Multiview Image and model generated successfully', 200
 
-
+    
 
 
 
