@@ -1,5 +1,4 @@
 import React from "react";
-import GoogleLogin from '../components/GoogleLogin';
 import UserAccount from '../components/UserAccount';
 import Carousel from '../components/Carousel'; 
 import styled from 'styled-components';
