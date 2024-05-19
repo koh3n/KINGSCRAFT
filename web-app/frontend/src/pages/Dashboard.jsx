@@ -1,8 +1,8 @@
 import React from "react";
-import GoogleLogin from '../components/GoogleLogin';
 import UserAccount from '../components/UserAccount';
 import Carousel from '../components/Carousel'; 
 import styled from 'styled-components';
+import "../styles/Dashboard.css"
 
 const CarouselItemContent = styled.div`
   display: flex;
@@ -15,20 +15,21 @@ const CarouselItemContent = styled.div`
 `;
 
 const Dashboard = (images) => {
+  // const items = images.map((image, index) => (
+  //   <CarouselItemContent key={index}>
+  //     <img src={image} alt={`Slide ${index + 1}`} />
+  //   </CarouselItemContent>
+  // ));
+
   const items = [
-    <CarouselItemContent>Slide 1</CarouselItemContent>,
-    <CarouselItemContent>Slide 2</CarouselItemContent>,
-    <CarouselItemContent>Slide 3</CarouselItemContent>,
-  ];
+    <CarouselItemContent>First Slide</CarouselItemContent>
+  ]
 
   return (
-    <div className="dashboard">
-      <Carousel items={items} />
-      <div className='left-div'>
-        <div className='button-cont'>
-          <UserAccount />
-          <GoogleLogin />
-        </div>
+    <div className="main">
+      <div className="dashboard">
+        <UserAccount />
+        <Carousel items={items} />
       </div>
     </div>
   );

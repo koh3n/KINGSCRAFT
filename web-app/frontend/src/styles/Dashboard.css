@@ -1,17 +1,17 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
 }
 
 .dashboard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  background-color: red;
+  justify-content: space-around;
+  /* width: 60%; */
 }
 
 .project_container {
@@ -56,6 +56,8 @@ img {
   justify-content: center;
   margin-top: 2rem;
   width: 100%;
+  border-width: 1px;
+  border-color: silver;
 }
 
 .button-cont {

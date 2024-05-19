@@ -4,7 +4,7 @@
     border: none;
     position: fixed;
     top: 0;
-    left: 0;
+    left: 1.2rem;
     right: 0;
     width: 100%;
     z-index: 1000;
@@ -40,7 +40,6 @@
     font-weight: 500;
     transition: color 0.3s ease;
     letter-spacing: 0.2em;
-    /* margin-left: 2rem; */
 }
 
 .nav-link:hover {
