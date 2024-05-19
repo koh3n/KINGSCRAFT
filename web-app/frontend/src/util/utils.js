@@ -23,11 +23,11 @@ async function writeUrl(url, filePath) {
   }
 }
 
-function parse_url(url) {
+export function parse_url(url) {
   // Split the URL by '/'
   const parts = url.split("/");
   // Find the index of 'models' in the URL
-  const modelsIndex = parts.indexOf("models");
+  const modelsIndex = parts.indexOf("processed-image");
   // If 'models' is found in the URL
   if (modelsIndex !== -1 && modelsIndex < parts.length - 1) {
     // Get the next part after 'models'
