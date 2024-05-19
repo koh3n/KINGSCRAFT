@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Image, Button, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, Image, Button, StyleSheet } from "react-native";
 
 export default function LandingScreen({ navigation }) {
   return (
@@ -11,9 +11,9 @@ export default function LandingScreen({ navigation }) {
       />
       <View style={styles.buttonContainer}>
         <Button
-          title="Go to Login"
-          onPress={() => navigation.navigate("Login")}
-          color="black" // Customize the button color if needed
+          title="Create!"
+          onPress={() => navigation.navigate("Projects")}
+          color="blue" // Customize the button color if needed
         />
       </View>
     </View>
@@ -30,24 +30,24 @@ const styles = StyleSheet.create({
   },
   text: {
     // Elevate your 3d printing capabilities.
-    fontFamily: 'Roboto',
-    fontWeight: 'normal',
+    fontFamily: "Roboto",
+    fontWeight: "normal",
     fontSize: 30,
     lineHeight: 35,
-    color: 'black',
-    textAlign: 'center',
+    color: "black",
+    textAlign: "center",
     marginBottom: 20,
   },
   image: {
     width: 350,
     height: 350,
-    resizeMode: 'contain', // Ensure the image scales properly
+    resizeMode: "contain", // Ensure the image scales properly
     marginBottom: 30,
   },
   buttonContainer: {
-    width: '80%',
+    width: "80%",
     marginTop: 20,
     borderRadius: 5,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
 });
