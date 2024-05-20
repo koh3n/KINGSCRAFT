@@ -1,6 +1,6 @@
 # KINGSCRAFT
 
-stormhacks 2024
+Stormhacks 2024 Runner-Up
 
 ## Running Mobile App
 
